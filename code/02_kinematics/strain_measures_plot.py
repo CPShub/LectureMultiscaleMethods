@@ -1,21 +1,40 @@
-lam=np.linspace(1,(w_max.result['tension']+1)**0.5,200)
-E_11=0.5*(lam**2-1)
-e_11=0.5*(1-lam**(-2))
-e_lin_11=lam-1
-plt.xlabel("$\lambda$ in -")
-plt.ylabel("11-Component in -")
-plt.title("Comparison of Strain Measures (Uniaxial Tension)")
-plt.plot(lam,E_11,lam,e_11,lam,e_lin_11)
-plt.gca().legend(('Green-Lagrange','Euler-Almansi','Linearization'))
+n_max=50
+
+El=np.zeros([3,3,n_max])
+E_lin_l=np.zeros([3,3,n_max])
+I1=np.zeros(n_max)
+
+F_inp=list(w_F.result.values())
+
+Fl_0_0=np.linspace(1,F_inp[0],n_max)
+Fl_1_1=np.linspace(1,F_inp[1],n_max)
+Fl_0_1=np.linspace(0,F_inp[2],n_max)
+Fl_1_0=np.linspace(0,F_inp[3],n_max)
+
+for i in list(range(0,n_max,1)):
+    Fl=np.eye(3)
+    Fl[0,0]=Fl_0_0[i]
+    Fl[1,1]=Fl_1_1[i]
+    Fl[0,1]=Fl_0_1[i]
+    Fl[1,0]=Fl_1_0[i]
+    #	Strain Tensors
+    bl=np.matmul(Fl,np.transpose(Fl))
+    El[:,:,i]=0.5*(np.matmul(np.transpose(Fl),Fl)-np.identity(3))
+    E_lin_l[:,:,i]=0.5*(Fl+np.transpose(Fl))-np.identity(3)
+    I1[i]=np.trace(bl)-3.0
+	
+
+plt.xlabel("$I_1(C)$")
+plt.ylabel("11-Component")
+plt.title("Green-Lagrange Strain Tensor and its Linearization")
+plt.plot(I1,El[0,0,:],I1,E_lin_l[0,0,:])
+plt.gca().legend(('Green-Lagrange Strain Tensor','Linearized Strain Tensor'))
 plt.show()
 
-gamma=np.linspace(0,(w_max.result['shear']/2.0)**0.5,200)
-E_11=0.5*(gamma**2)
-e_11=0.5*(1-(1.0+gamma**2)**(-1))
-e_lin_11=np.zeros((200,1))
-plt.xlabel("$\gamma$ in -")
-plt.ylabel("11-Component in -")
-plt.title("Comparison of Strain Measures (Pure Shear)")
-plt.plot(gamma,E_11,gamma,e_11,gamma,e_lin_11)
-plt.gca().legend(('Green-Lagrange','Euler-Almansi','Linearization'))
+plt.xlabel("$I_1(C)$")
+plt.ylabel("12-Component")
+plt.plot(I1,El[0,1,:],I1,E_lin_l[0,1,:])
+plt.gca().legend(('Green-Lagrange Strain Tensor','Linearized Strain Tensor'))
 plt.show()
+
+
