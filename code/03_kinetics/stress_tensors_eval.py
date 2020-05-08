@@ -28,6 +28,7 @@ sigma=1.0/J*np.matmul(P,np.transpose(F))
 
 
 print('Second Piola Kirchhoff Tensor')
+print()
 print('S=')
 print(S)
 print()

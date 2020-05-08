@@ -30,7 +30,7 @@ ax.plot3D(x_dev, y_dev, z_dev, 'blue',label='Deviatoric Stress')
 
 # Coordinate system
 axis_0 = np.linspace(0,0,2)
-axis_1 = np.linspace(0,p,2)
+axis_1 = np.linspace(0,np.max([p,0.1]),2)
 ax.plot3D(axis_1,axis_0,axis_0, 'black')
 ax.plot3D(axis_0,axis_1,axis_0, 'black')
 ax.plot3D(axis_0,axis_0,axis_1, 'black')
