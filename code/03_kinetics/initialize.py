@@ -13,6 +13,8 @@ interactive(True)
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 from matplotlib.ticker import LinearLocator, FormatStrFormatter
+import warnings 						   # Supress "NaN"-Warning at surf-plot
+
 
 # Add subfolders to working directory
 sys.path.insert(0,"code")
@@ -21,3 +23,6 @@ sys.path.insert(0,"./code/03_kinetics")
 # Function for interactive input with widgets
 def inp(**kargs):
     return kargs
+	
+# Print options for numpy
+np.set_printoptions(formatter={'float': lambda x: "{0:0.3f}".format(x)}) # decimal places numpy output

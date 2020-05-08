@@ -5,6 +5,8 @@ F[1,1]=F_inp[1]
 F[0,1]=F_inp[2]
 F[1,0]=F_inp[3]
 
+F[2,2]=1.0/(F[0,0]*F[1,1])
+
 
 #	Strain Tensors
 b=np.matmul(F,np.transpose(F))
@@ -24,9 +26,22 @@ S=2.0*mu*E+lam*np.trace(E)*np.identity(3)
 P=np.matmul(F,S)
 sigma=1.0/J*np.matmul(P,np.transpose(F))
 
-print('Cauchy Stress Tensor')
-print(sigma[0:2,0:2])
-print('First Piola Kirchhoff Stress Tensor')
-print(P[0:2,0:2])
+
 print('Second Piola Kirchhoff Tensor')
-print(S[0:2,0:2])
+print('S=')
+print(S)
+print()
+print()
+print('First Piola Kirchhoff Stress Tensor')
+print()
+print('P =')
+print(P)
+print()
+print()
+print('Cauchy Stress Tensor')
+print()
+print('sigma =')
+print(sigma)
+#print()
+#print('J =')
+#print(np.linalg.det(F))
