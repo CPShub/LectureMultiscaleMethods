@@ -14,6 +14,8 @@ from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 from matplotlib.ticker import LinearLocator, FormatStrFormatter
 import warnings 						   # Supress "NaN"-Warning at surf-plot
+from sympy import I, Matrix, symbols
+from sympy.physics.quantum import TensorProduct
 
 
 # Add subfolders to working directory

@@ -85,5 +85,7 @@ ax.set_xlabel('$\sigma_1$')
 ax.set_ylabel('$\sigma_2$')
 ax.set_zlabel('$\sigma_3$')
 
+plt.title('Principal Stress Space')
+
 plt.legend()
 plt.show()
