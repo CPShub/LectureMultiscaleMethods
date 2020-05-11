@@ -71,7 +71,7 @@ for i in np.arange(len(x_pi_plane)):
 		    z_pi_plane[j,i] = np.nan
               
 #  supress warning "NaN-Values" at surface plot
-warnings.filterwarnings("ignore") 
+#warnings.filterwarnings("ignore") 
 
 ax.plot_surface(x_pi_plane,y_pi_plane,z_pi_plane,alpha=0.1,color='orange')
 ax.plot3D([0,0],[0,0],[0,0], 'orange',alpha=0.1,label='Pi Plane')
