@@ -14,8 +14,26 @@ from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 from matplotlib.ticker import LinearLocator, FormatStrFormatter
 
+# Initialize function for magic function "matplotlib"
+display(Javascript("Jupyter.notebook.execute_cells([24])"))
 
+# Define variable vor switching between static / interactive
+global notebook_is_interactive
 
+def notebook_static():
+    interactive_plot(True)
+    interactive_plot(False)
+    global notebook_is_interactive
+    notebook_is_interactive=False
+    display(Javascript("Jupyter.notebook.execute_cells(" + str(cell_update) + ")"))
+    
+def notebook_interactive():
+    interactive_plot(True)
+    global notebook_is_interactive
+    notebook_is_interactive=True
+    display(Javascript("Jupyter.notebook.execute_cells(" + str(cell_update) + ")"))
+
+	
 # Add subfolders to working directory
 sys.path.insert(0,"./code/03_kinetics")
 
