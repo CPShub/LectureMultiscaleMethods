@@ -63,8 +63,8 @@ def stress_tensors_eval(F11,F22,F33,F12,F21):
 
     #	Stress Tensors
     #	Parameter
-    mu=12.0
-    lam=8.0
+    mu=8.0
+    lam=12.0
 
     S=2.0*mu*E+lam*np.trace(E)*np.identity(3)
     P=np.matmul(F,S)
