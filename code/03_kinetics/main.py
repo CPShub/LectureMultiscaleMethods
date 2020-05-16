@@ -308,6 +308,9 @@ def dev_hyd_stress_eval(sig11,sig22,sig33,
 
     for xb, yb, zb in zip(Xb, Yb, Zb):
        ax.plot([xb], [yb], [zb], 'w')
+       
+    ax.set_zlim(Zb[0],Zb[-1])
+
 
 
     # Pi Plane
@@ -321,14 +324,18 @@ def dev_hyd_stress_eval(sig11,sig22,sig33,
     x_pi_plane, y_pi_plane = np.meshgrid(np.linspace(plt.xlim()[0], plt.xlim()[1], 100), np.linspace(plt.ylim()[0], plt.ylim()[1], 100))
     z_pi_plane = (-normal[0] * x_pi_plane - normal[1] * y_pi_plane - d) * 1. /normal[2]
  
-    # Delete z-values outside plot window
+    colors_pi_plane=np.empty((100,100), dtype=object)
+   
+ 
+    # Hide z-values outside plot window
     for i in np.arange(len(x_pi_plane)):
         for j in np.arange(len(x_pi_plane)):
-	        if z_pi_plane[j,i] < Zb.min() or z_pi_plane[j,i] > Zb.max():
-		        z_pi_plane[j,i] = np.nan
+            colors_pi_plane[j,i]=(1.0,0.75,0.0)
+            if z_pi_plane[j,i] < Zb.min() or z_pi_plane[j,i] > Zb.max():
+                colors_pi_plane[j,i]=(1.00,1.0,1.0)
               
-    ax.plot_surface(x_pi_plane,y_pi_plane,z_pi_plane,alpha=0.1,color='orange')
-    ax.plot3D([0,0],[0,0],[0,0], 'orange',alpha=0.1,label='Pi Plane')
+    ax.plot_surface(x_pi_plane,y_pi_plane,z_pi_plane,shade=False,alpha=0.1,facecolors=colors_pi_plane,linewidth=0.0)#'color='orange')
+    ax.plot3D([0,0],[0,0],[0,0], color=(1.0,0.75,0.0),alpha=0.1,label='Pi Plane')
 
 
     # rotate the axes and update
