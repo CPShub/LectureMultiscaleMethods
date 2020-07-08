@@ -2,4 +2,4 @@ name: base
 channels:
   - defaults
 dependencies:
-  - numpy
+  - numpy=1.18.5
