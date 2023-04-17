@@ -2,7 +2,7 @@ name: base
 channels:
   - defaults
 dependencies:
-  - numpy=1.18.5
-  - matplotlib=3.2.2
-  - scipy=1.5.0
-  - h5py=2.10.0
+  - numpy
+  - matplotlib
+  - scipy
+  - h5py
