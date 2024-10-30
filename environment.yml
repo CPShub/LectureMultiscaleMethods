@@ -6,3 +6,5 @@ dependencies:
   - matplotlib
   - scipy
   - h5py
+  - notebook=6
+  - jupyter_server=1
